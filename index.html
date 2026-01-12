@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CupidCrafted | Special Request</title>
+    <style>
+        body { background: #fff5f7; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; display: flex; align-items: center; justify-content: center; height: 100vh; overflow: hidden; text-align: center; transition: background 1s ease; }
+        .card { width: 90%; max-width: 400px; padding: 25px; border-radius: 30px; background: rgba(255, 255, 255, 0.4); }
+        
+        #main-gif { width: 190px; border-radius: 20px; margin-bottom: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        h1 { color: #d32f2f; font-size: 1.6rem; margin-bottom: 10px; font-weight: 700; }
+        p { color: #4a4a4a; font-size: 1.1rem; line-height: 1.5; margin-bottom: 20px; }
+
+        .btn-container { display: flex; flex-direction: column; align-items: center; gap: 15px; position: relative; width: 100%; min-height: 150px; }
+        button { border: none; border-radius: 50px; cursor: pointer; transition: all 0.2s ease; font-weight: bold; font-family: inherit; }
+        #yesBtn { background: #e91e63; color: white; padding: 15px 45px; font-size: 1.2rem; z-index: 10; box-shadow: 0 4px 15px rgba(233, 30, 99, 0.3); }
+        #noBtn { background: #9b9b9b; color: white; padding: 10px 25px; font-size: 1rem; z-index: 5; }
+
+        #success-img { width: 100%; max-width: 320px; border-radius: 15px; display: none; margin: 20px auto; box-shadow: 0 20px 40px rgba(0,0,0,0.5); border: 2px solid #FFD700; }
+        .hidden { display: none !important; }
+    </style>
+</head>
+<body>
+
+    <div class="card" id="content">
+        <img id="main-gif" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHpueGZ4Z3R4Z3R4Z3R4Z3R4Z3R4Z3R4Z3R4Z3R4Z3R4Z3R4Jm09MQ/cLS1cfxvGOPVpf9g3y/giphy.gif">
+        
+        <h1 id="title">Me dɔ, [Partner Name] ❤️</h1>
+        <p id="sub-text">Me wɔ asɛm bi kyerɛ wo. I’ve been meaning to ask you this properly...</p>
+
+        <div class="btn-container" id="btn-group">
+            <button id="yesBtn" onclick="celebrate()">YES! 😍</button>
+            <button id="noBtn" onclick="shrinkNo()">No 😢</button>
+        </div>
+
+        <img id="success-img" src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80">
+    </div>
+
+    <script>
+        let yesSize = 1;
+        let noSize = 1;
+        let clickCount = 0;
+
+        const noResponses = [
+            "Are you sure?",
+            "Dabi, check again.",
+            "Chale, don't do me like that!",
+            "Think about my heart small.",
+            "Ei, wopɛ sɛ wuyi me mma?",
+            "Be serious koraa!",
+            "Is that your final answer?",
+            "Try the pink button, it's better.",
+            "I'm not taking No for an answer!",
+            "Okay, No is finished!"
+        ];
+
+        function shrinkNo() {
+            clickCount++;
+            const noBtn = document.getElementById('noBtn');
+            const yesBtn = document.getElementById('yesBtn');
+            
+            yesSize += 0.4;
+            noSize -= 0.1;
+            yesBtn.style.transform = `scale(${yesSize})`;
+            noBtn.style.transform = `scale(${noSize})`;
+
+            if (clickCount < noResponses.length) {
+                noBtn.innerHTML = noResponses[clickCount];
+            }
+
+            if (noSize <= 0.3) {
+                noBtn.style.display = 'none';
+            }
+        }
+
+        function celebrate() {
+            const title = document.getElementById('title');
+            const subText = document.getElementById('sub-text');
+            const gif = document.getElementById('main-gif');
+            const successImg = document.getElementById('success-img');
+            const btnGroup = document.getElementById('btn-group');
+
+            title.innerHTML = "Medaase pii, My Valentine! ❤️";
+            title.style.color = "#FFD700"; 
+            subText.innerHTML = "I am the luckiest guy. I can't wait to spend the 14th with you. Me dɔ wo!";
+            
+            gif.classList.add('hidden');
+            btnGroup.classList.add('hidden');
+            
+            successImg.style.display = 'block';
+            document.body.style.background = "#0f0f0f"; 
+            document.body.style.color = "white";
+        }
+    </script>
+</body>
+</html>
